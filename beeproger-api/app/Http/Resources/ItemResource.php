@@ -20,6 +20,7 @@ class ItemResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
+            'image' => $this->image,
             'status' => $this->status,
             'created_at' => Carbon::parse($this->created_at)->calendar(),
         ];

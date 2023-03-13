@@ -33,9 +33,17 @@ class ItemController extends Controller
         $request->validate([
             'title' => ['required', 'string', 'min:4', 'max:40'],
             'description' => ['required', 'string'],
+            'image' => ['string'],
         ]);
 
-        $itemId = Item::create($request->only(['title', 'description']))->id;
+        $body = ['title', 'description'];
+
+        if ($request->image){
+            $body[] = 'image';
+        }
+
+
+        $itemId = Item::create($request->only($body))->id;
 
         $item = Item::where('id', $itemId)->first();
 
@@ -46,6 +54,7 @@ class ItemController extends Controller
         $request->validate([
             'title' => ['string'],
             'description' => ['string'],
+            'image' => ['string'],
         ]);
 
         $item = Item::where('id', $request->item_id);
@@ -54,7 +63,13 @@ class ItemController extends Controller
             throw new HttpException(404, "Specified item not found.");
         }
 
-        $item->update($request->only(['title', 'description']));
+        $body = ['title', 'description'];
+
+        if ($request->image){
+            $body[] = 'image';
+        }
+
+        $item->update($request->only($body));
 
         $item = Item::where('id', $request->item_id)->first();
 
@@ -63,7 +78,7 @@ class ItemController extends Controller
     public function markItemAsComplete(Request $request): JsonResponse
     {
         $request->validate([
-            'item_id' => ['required', 'string']
+            'item_id' => ['required']
         ]);
 
         $item = Item::where('id', $request->item_id);

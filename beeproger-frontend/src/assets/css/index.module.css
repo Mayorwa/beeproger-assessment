@@ -1,5 +1,7 @@
-.addTask{
-}
-.addTask span{
-    margin-left: 10px;
+.taskContainer{
+    background: #ffffff;
+    border: 1px solid #c4c4c4;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 10px;
 }

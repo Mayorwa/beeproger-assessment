@@ -1,6 +1,5 @@
 import React, {useLayoutEffect} from 'react';
 import {Routes, Route, useLocation} from "react-router-dom";
-// import AppContainer from './components/containers/AppContainer';
 import { Index } from './views/Index';
 import './App.css';
 

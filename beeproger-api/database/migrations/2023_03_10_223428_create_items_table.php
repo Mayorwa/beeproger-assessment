@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('image')->nullable();
-            $table->string('description');
+            $table->longText('description');
             $table->enum('status', ['completed', 'pending'])->default('pending');
             $table->timestamps();
         });
